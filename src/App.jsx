@@ -3,19 +3,35 @@ import React, { useState } from 'react'
 const App = () => {
   return (
     <div>
-      <Folder name='components'>
-        <Folder name='Inputs'>
-          <File name='TextField.jsx' />
-          <File name='index.css' />
-          <File name='Dropdown.jsx' />
+      <Folder name='node_modules'>
+        <Folder name='.bin' />
+        <Folder name='@babel' />
+        <Folder name='@jest' />
+        <Folder name='@types' />
+      </Folder>
+      <Folder name='public'>
+        <File name='index.html' />
+      </Folder>
+      <Folder name='src'>
+        <Folder name='components'>
+          <Folder name='Inputs'>
+            <File name='TextField.jsx' />
+            <File name='index.css' />
+            <File name='Dropdown.jsx' />
+          </Folder>
+          <File name='Form.jsx' />
+          <File name='Background_Video.mp4' />
         </Folder>
-        <File name='Form.jsx' />
-        <File name='Background_Video.mp4' />
+        <Folder name='Pages'>
+          <File name='Home.jsx' />
+        </Folder>
+        <File name='App.jsx' />
+        <File name='index.css' />
+        <File name='index.js' />
       </Folder>
-      <Folder name='Pages'>
-        <File name='Home.jsx' />
-      </Folder>
-      <File name='App.jsx' />
+      <File name='.gitignore' />
+      <File name='package.json' />
+      <File name='Readme.md' />
     </div>
   )
 }
@@ -23,6 +39,7 @@ const App = () => {
 const Folder = (props) => {
   const [isOpen, setIsOpen] = useState(false)
   const direction = isOpen ? 'down' : 'right'
+  const folderType = isOpen ? 'folder open' : 'folder'
 
   const handleClick = () => {
     setIsOpen(!isOpen)
@@ -30,7 +47,7 @@ const Folder = (props) => {
   return (
     <div>
       <span onClick={handleClick} style={{ cursor: 'pointer' }}>
-        <i className='folder icon blue'></i>
+        <i className={`${folderType} icon blue`}></i>
         <i className={`caret icon ${direction}`}></i>
       </span>
       {props.name}
@@ -49,6 +66,11 @@ const File = (props) => {
     png: 'file image outline',
     jsx: 'react',
     css: 'css3',
+    gitignore: 'github',
+    json: 'js',
+    js: 'js',
+    md: 'info circle',
+    html: 'html5',
   }
   return (
     <div>
