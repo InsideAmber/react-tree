@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
+import File from './components/File'
+import Folder from './components/Folder'
 
 const App = () => {
   return (
-    <div>
+    <div style={{ marginTop: '10px', marginLeft: '10px' }}>
       <Folder name='node_modules'>
         <Folder name='.bin' />
         <Folder name='@babel' />
@@ -32,50 +34,6 @@ const App = () => {
       <File name='.gitignore' />
       <File name='package.json' />
       <File name='Readme.md' />
-    </div>
-  )
-}
-
-const Folder = (props) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const direction = isOpen ? 'down' : 'right'
-  const folderType = isOpen ? 'folder open' : 'folder'
-
-  const handleClick = () => {
-    setIsOpen(!isOpen)
-  }
-  return (
-    <div>
-      <span onClick={handleClick} style={{ cursor: 'pointer' }}>
-        <i className={`${folderType} icon blue`}></i>
-        <i className={`caret icon ${direction}`}></i>
-      </span>
-      {props.name}
-
-      <div style={{ marginLeft: '17px' }}>{isOpen ? props.children : null}</div>
-    </div>
-  )
-}
-
-const File = (props) => {
-  const { name } = props
-  const fileExtensions = name.split('.')[1]
-  const fileIcons = {
-    mp4: 'headphones',
-    jpeg: 'file image',
-    png: 'file image outline',
-    jsx: 'react',
-    css: 'css3',
-    gitignore: 'github',
-    json: 'js',
-    js: 'js',
-    md: 'info circle',
-    html: 'html5',
-  }
-  return (
-    <div>
-      <i className={`${fileIcons[fileExtensions]} icon`}></i>
-      {name}
     </div>
   )
 }
